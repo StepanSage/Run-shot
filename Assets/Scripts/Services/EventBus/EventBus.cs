@@ -9,7 +9,7 @@ namespace Scripts.Services
         private Dictionary<string, List<object>> _eventBus = new Dictionary<string, List<object>>();
         public static EventBus Current;
 
-        private static void Initalization()
+        public static void Initalization()
         {
             Current = new EventBus();
         }

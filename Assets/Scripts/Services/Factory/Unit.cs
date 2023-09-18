@@ -1,18 +1,24 @@
 using Scripts.Logica;
 using Scripts.Logica.Weapon;
 using UnityEngine;
-
+using Scripts.UI;
+using Scripts.Services.ServiceLocator;
 
 namespace Scripts.Services.Factory 
 {
     public abstract class Unit : Characrteristics
     {
         [SerializeField] private PointAttackEnemy _pointAttackEnemy;
-        
-        
+
+        private ScoreKill _scoreKill;
+        private Gold _gold;
+          
         protected AbstractWepon _gun;
         protected int MaxHealth;
         protected Vector3 _startPosition;
+        protected float SpeedCurrent;
+
+        
 
 
         private void Start()
@@ -21,13 +27,19 @@ namespace Scripts.Services.Factory
             _startPosition = transform.position;
             _gun = ServiceLocator.ServiceLocator.Current.Get<AbstractWepon>();
             _pointAttackEnemy = FindObjectOfType<PointAttackEnemy>();
+            _scoreKill = ServiceLocator.ServiceLocator.Current.Get<ScoreKill>();
+            _gold = ServiceLocator.ServiceLocator.Current.Get<Gold>();
+            
+            
+
 
         }
-
+       
         private void Update()
         {
-            Dead();
+            
             Move();
+            Dead();
         }
 
         public  void DealingDamag()
@@ -50,21 +62,18 @@ namespace Scripts.Services.Factory
         }
         public void Move()
         {
-            if(transform.position.z <= -4f)
+            if (transform.position.z <= -4f)
             {
                 Vector3 target = new Vector3(_pointAttackEnemy.transform.position.x, _pointAttackEnemy.transform.position.y, _pointAttackEnemy.transform.position.z);
                 transform.position = Vector3.MoveTowards(transform.position, target, Speed * Time.deltaTime);
-
             }
-            else
+            else if(transform.position.z >= 0)
             {
                 var direction = new Vector3(0, 0, -1f);
                 transform.Translate(direction * Speed * Time.deltaTime);
+
+
             }
-
-
-
-            //_rigidbody.AddForce(target * 30 * Time.deltaTime);
         }
 
         public void Dead()
@@ -72,25 +81,14 @@ namespace Scripts.Services.Factory
             if(Health <= 0)
             {
                 Health = MaxHealth;
+                _scoreKill.Kill();
+                _gold.AddGold(MinGold, MaxGold);
                 gameObject.SetActive(false);
-                transform.position = _startPosition;
-
-
+               
+                transform.position = _startPosition; 
+                
             }
         }
-
-        //public void OnTriggerEnter(Collider other)
-        //{
-        //    if(other != null)
-        //    {
-        //        if (other.gameObject.GetComponent<Ammo>())
-        //        {
-        //            TakeDamag();
-        //            other.gameObject.SetActive(false);
-        //        } 
-        //    }
-        //}
-
         public void OnCollisionEnter(Collision collision)
         {
             if (collision != null)
@@ -102,6 +100,8 @@ namespace Scripts.Services.Factory
                 }
             }
         }
+
+        
 
     }
 }

@@ -8,8 +8,11 @@ namespace Scripts.Services.EntryPoint
     {
         [SerializeField] private MainServiceLocator _mainServiceLocator;
         [SerializeField] private SpawnActor _spawmActor;
+        
         private void Awake()
         {
+
+            EventBus.Initalization();
             _spawmActor.Initializetion();
             _mainServiceLocator.Initialization();
         }

@@ -4,11 +4,13 @@ namespace Scripts.Services.Factory
 {
     public class Characrteristics : MonoBehaviour
     {
-        public int Damag;
-        public int Health;
-        public int ChanceCrete;
-        public int Accuracy;
-        public float Speed;
+        [SerializeField] protected int Damag;
+        [SerializeField] protected int Health;
+        [SerializeField] protected int ChanceCrete;
+        [SerializeField] protected int Accuracy;
+         public float Speed;
+        public int MinGold;
+        public int MaxGold;
     }
 }
 
