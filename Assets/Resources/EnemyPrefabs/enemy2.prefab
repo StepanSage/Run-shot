@@ -534,9 +534,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8915827726194656166}
-  - component: {fileID: 5035792952129563487}
-  - component: {fileID: 6392892541702280830}
   - component: {fileID: -8768447408071941694}
+  - component: {fileID: 5364890541475852265}
   m_Layer: 0
   m_Name: enemy2
   m_TagString: Untagged
@@ -568,45 +567,6 @@ Transform:
   - {fileID: 740438138945324725}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5035792952129563487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2986706967776414144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d983b6a8f747324aa121c73e7a492bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damag: 0
-  Health: 1
-  ChanceCrete: 0
-  Accuracy: 0
-  Speed: 3
-  MinGold: 0
-  MaxGold: 0
-  _pointAttackEnemy: {fileID: 0}
---- !u!114 &6392892541702280830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2986706967776414144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a766577ecb70bd49a02d15c3cd35b2b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damag: 0
-  Health: 3
-  ChanceCrete: 0
-  Accuracy: 0
-  Speed: 0
-  MinGold: 0
-  MaxGold: 0
 --- !u!54 &-8768447408071941694
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -634,6 +594,26 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 112
   m_CollisionDetection: 2
+--- !u!114 &5364890541475852265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2986706967776414144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8b46fa23e82b5a498107ec6c6cf1092, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damag: 0
+  Health: 2
+  ChanceCrete: 0
+  Accuracy: 0
+  Speed: 1
+  MinGold: 0
+  MaxGold: 0
+  _pointAttackEnemy: {fileID: 0}
 --- !u!1 &4860600904511950019
 GameObject:
   m_ObjectHideFlags: 0

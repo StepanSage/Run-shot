@@ -18,8 +18,6 @@ namespace Scripts.Services.Factory
         protected Vector3 _startPosition;
         protected float SpeedCurrent;
 
-        
-
 
         private void Start()
         {
@@ -29,9 +27,6 @@ namespace Scripts.Services.Factory
             _pointAttackEnemy = FindObjectOfType<PointAttackEnemy>();
             _scoreKill = ServiceLocator.ServiceLocator.Current.Get<ScoreKill>();
             _gold = ServiceLocator.ServiceLocator.Current.Get<Gold>();
-            
-            
-
 
         }
        
@@ -67,7 +62,7 @@ namespace Scripts.Services.Factory
                 Vector3 target = new Vector3(_pointAttackEnemy.transform.position.x, _pointAttackEnemy.transform.position.y, _pointAttackEnemy.transform.position.z);
                 transform.position = Vector3.MoveTowards(transform.position, target, Speed * Time.deltaTime);
             }
-            else if(transform.position.z >= 0)
+            else
             {
                 var direction = new Vector3(0, 0, -1f);
                 transform.Translate(direction * Speed * Time.deltaTime);
@@ -83,9 +78,9 @@ namespace Scripts.Services.Factory
                 Health = MaxHealth;
                 _scoreKill.Kill();
                 _gold.AddGold(MinGold, MaxGold);
+                transform.position = _startPosition;
                 gameObject.SetActive(false);
                
-                transform.position = _startPosition; 
                 
             }
         }
@@ -97,6 +92,7 @@ namespace Scripts.Services.Factory
                 {
                     TakeDamag();
                     collision.gameObject.SetActive(false);
+                    
                 }
             }
         }

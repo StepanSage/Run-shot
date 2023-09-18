@@ -1,6 +1,7 @@
 using Scripts.Services.PoolObject;
 using Scripts.Services.Factory;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace Scripts.Services.Factory.RealizationFactory
 {
@@ -12,28 +13,36 @@ namespace Scripts.Services.Factory.RealizationFactory
     
         private Factory AreaOneFactory;
         private PoolObject<Characrteristics> _poolObject;
+        private PoolObject<GoblinTank> poolGoblinTank; 
         private float _currentDelayBeetweenSpawn;
+
+     
     
         void Start()
         {
-            Initialized();
-            
+            Initialized(); 
         }
         private void Update()
-        {
-            
-                Spawn();
-            
+        { 
+            Spawn();   
         }
 
         public void Initialized()
         {
             _currentDelayBeetweenSpawn = _delayBetweenSpawn;
-            AreaOneFactory = new AreanOneEnemyFactory();
-            var prefabs = AreaOneFactory.MeleeEnemy();
-            prefabs.GetComponent<Characrteristics>();
-            _poolObject = new PoolObject<Characrteristics>(prefabs, 6);
+            FillingEnemy();
         }
+        public void FillingEnemy()
+        {
+            AreaOneFactory = new AreanOneEnemyFactory();
+
+            var prefabsMeleeEnemy = AreaOneFactory.MeleeEnemy();
+            _poolObject = new PoolObject<Characrteristics>(prefabsMeleeEnemy, 6);
+
+            var  pefabsGoblinTank = AreaOneFactory.GoblinTank();
+            poolGoblinTank = new PoolObject<GoblinTank>(pefabsGoblinTank, 7);
+        }
+
         public int VariantSpawn()
         {
             int variant = Random.Range(0, _variantSpawn.Length);
